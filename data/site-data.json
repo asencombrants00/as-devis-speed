@@ -867,6 +867,22 @@
                 "order": 3
               }
             ]
+          },
+          {
+            "id": "appartement-chantier-1783862559004-37k4ba",
+            "title": "Enlèvement d'encombrants - Annonay (07)",
+            "description": "Enlèvement d'encombrants avec nettoyage + ajout de nouveaux meubles ",
+            "order": 1,
+            "media": [
+              {
+                "id": "appartement-chantier-1783862559004-37k4ba-media-1783862612813-ai2pxk",
+                "type": "video",
+                "src": "assets/portfolio/appartement/1783862602680-1-appartement-annonay.mp4",
+                "label": "Avant",
+                "alt": "Appartement complet — Avant",
+                "order": 0
+              }
+            ]
           }
         ]
       },
@@ -880,5 +896,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T13:22:34.749Z"
+  "updatedAt": "2026-07-12T13:23:32.813Z"
 }
