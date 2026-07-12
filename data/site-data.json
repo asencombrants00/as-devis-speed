@@ -662,6 +662,33 @@
       "weightKg": 100,
       "wasteType": "Tout-venant",
       "visible": true
+    },
+    {
+      "id": "petits_objets_divers_20kg",
+      "name": "Petits objets divers (-20KG)",
+      "category": "Petits objets",
+      "price": 10,
+      "weightKg": 20,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "petits_objets_divers_40kg",
+      "name": "Petits objets divers (-40KG)",
+      "category": "Petits objets",
+      "price": 20,
+      "weightKg": 40,
+      "wasteType": "Tout-venant",
+      "visible": false
+    },
+    {
+      "id": "petits_objets_divers_60kg",
+      "name": "Petits objets divers (-60KG)",
+      "category": "Petits objets",
+      "price": 30,
+      "weightKg": 60,
+      "wasteType": "Tout-venant",
+      "visible": true
     }
   ],
   "portfolio": {
@@ -896,5 +923,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T13:27:04.791Z"
+  "updatedAt": "2026-07-12T13:46:07.030Z"
 }
