@@ -728,6 +728,22 @@
                 "order": 3
               }
             ]
+          },
+          {
+            "id": "cave-chantier-1783859898658-kt91ym",
+            "title": "Cave — Rochemaure",
+            "description": "Débarras de cave en avant / après, le chantier à été fait à Rochemaure (07).",
+            "order": 1,
+            "media": [
+              {
+                "id": "cave-chantier-1783859898658-kt91ym-media-1783859929802-vqqgff",
+                "type": "video",
+                "src": "assets/portfolio/cave/1783859924642-1-cave-rochemaure.mp4",
+                "label": "Avant",
+                "alt": "Cave — Avant",
+                "order": 0
+              }
+            ]
           }
         ]
       },
@@ -863,5 +879,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T12:35:17.860Z"
+  "updatedAt": "2026-07-12T12:38:49.803Z"
 }
