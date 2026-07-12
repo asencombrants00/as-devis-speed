@@ -653,6 +653,15 @@
       "weightKg": 25,
       "wasteType": "Tout-venant",
       "visible": true
+    },
+    {
+      "id": "piscine_tubulaire",
+      "name": "Piscine Tubulaire",
+      "category": "Extérieur / Divers",
+      "price": 50,
+      "weightKg": 100,
+      "wasteType": "Tout-venant",
+      "visible": true
     }
   ],
   "portfolio": {
@@ -879,5 +888,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T12:38:57.405Z"
+  "updatedAt": "2026-07-12T13:05:10.063Z"
 }
