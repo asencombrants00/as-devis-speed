@@ -923,5 +923,9 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T13:46:13.886Z"
+  "updatedAt": "2026-07-12T13:47:34.486Z",
+  "requests": {
+    "supabaseUrl": "https://nowycqfbrvblaxfawyza.supabase.co/rest/v1",
+    "supabaseAnonKey": "sb_publishable_bixc6gH-llRog60fKQ_6qw_Prz-zE81"
+  }
 }
