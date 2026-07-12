@@ -827,6 +827,14 @@
                 "label": "Avant",
                 "alt": "Grenier — Avant",
                 "order": 2
+              },
+              {
+                "id": "grenier-chantier-1-media-1783864967908-c7tqla",
+                "type": "image",
+                "src": "assets/portfolio/grenier/1783864966930-1-684153231-122174348906838655-2372381225044793614-n.webp",
+                "label": "Après",
+                "alt": "Grenier — Après",
+                "order": 3
               }
             ]
           }
@@ -907,7 +915,7 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T14:02:41.463Z",
+  "updatedAt": "2026-07-12T14:02:47.909Z",
   "requests": {
     "supabaseUrl": "https://nowycqfbrvblaxfawyza.supabase.co",
     "supabaseAnonKey": "sb_publishable_bixc6gH-llRog60fKQ_6qw_Prz-zE81"
