@@ -718,6 +718,14 @@
                 "label": "Avant",
                 "alt": "Cave — Avant",
                 "order": 2
+              },
+              {
+                "id": "cave-chantier-1-media-1783859679020-9ngh5h",
+                "type": "image",
+                "src": "assets/portfolio/cave/1783859677630-1-2-apres.webp",
+                "label": "Avant",
+                "alt": "Cave — Avant",
+                "order": 3
               }
             ]
           }
@@ -855,5 +863,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T12:34:32.654Z"
+  "updatedAt": "2026-07-12T12:34:39.021Z"
 }
