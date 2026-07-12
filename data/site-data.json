@@ -857,6 +857,14 @@
                 "label": "Avant",
                 "alt": "Appartement complet — Avant",
                 "order": 2
+              },
+              {
+                "id": "appartement-chantier-1-media-1783862548663-6db8vf",
+                "type": "image",
+                "src": "assets/portfolio/appartement/1783862547416-1-713764976-122178857810838655-5403797433952526775-n.webp",
+                "label": "Avant",
+                "alt": "Appartement complet — Avant",
+                "order": 3
               }
             ]
           }
@@ -872,5 +880,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T13:22:18.881Z"
+  "updatedAt": "2026-07-12T13:22:28.663Z"
 }
