@@ -800,8 +800,8 @@
         "projects": [
           {
             "id": "grenier-chantier-1",
-            "title": "Grenier — chantier 1",
-            "description": "",
+            "title": "Enlèvement d'encombrants Grenier - Saint Pierre de Boeuf (42)",
+            "description": "Enlèvement d'encombrants Grenier - Saint Pierre de Boeuf (42)",
             "order": 0,
             "media": [
               {
@@ -819,30 +819,14 @@
                 "label": "Après",
                 "alt": "Grenier après chantier 1",
                 "order": 1
-              }
-            ]
-          },
-          {
-            "id": "grenier-chantier-2",
-            "title": "Grenier — chantier 2",
-            "description": "",
-            "order": 1,
-            "media": [
-              {
-                "id": "grenier-chantier-2-media-1",
-                "type": "image",
-                "src": "assets/portfolio/grenier/chantier-2-avant-1.jpg",
-                "label": "Avant",
-                "alt": "Grenier avant chantier 2",
-                "order": 0
               },
               {
-                "id": "grenier-chantier-2-media-2",
+                "id": "grenier-chantier-1-media-1783864961463-g4ljz0",
                 "type": "image",
-                "src": "assets/portfolio/grenier/chantier-2-apres-2.jpg",
-                "label": "Après",
-                "alt": "Grenier après chantier 2",
-                "order": 1
+                "src": "assets/portfolio/grenier/1783864960121-1-684194037-122174348858838655-5115286709081605146-n.webp",
+                "label": "Avant",
+                "alt": "Grenier — Avant",
+                "order": 2
               }
             ]
           }
@@ -923,7 +907,7 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T13:53:04.002Z",
+  "updatedAt": "2026-07-12T14:02:41.463Z",
   "requests": {
     "supabaseUrl": "https://nowycqfbrvblaxfawyza.supabase.co",
     "supabaseAnonKey": "sb_publishable_bixc6gH-llRog60fKQ_6qw_Prz-zE81"
