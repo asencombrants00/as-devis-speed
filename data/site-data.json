@@ -1,0 +1,874 @@
+{
+  "version": 1,
+  "site": {
+    "companyName": "AS Encombrants",
+    "phoneDisplay": "07 84 73 05 25",
+    "phoneHref": "0784730525",
+    "email": "as.encombrants@outlook.fr",
+    "heroTitle": "Débarras maison, cave, garage & jardin",
+    "heroAccent": "en Rhône-Alpes",
+    "heroText": "Remplissez votre demande comme un panier : ajoutez vos objets, précisez l’accès, obtenez une estimation immédiate et envoyez votre demande de devis gratuit.",
+    "presentationSubtitle": "Entreprise de proximité spécialisée dans l’enlèvement d’encombrants depuis 2024.",
+    "portfolioTitle": "Portefeuille avant / après",
+    "portfolioSubtitle": "Sélectionnez une catégorie pour voir les réalisations. Les photos sont gardées dans l’ordre et le sens fournis.",
+    "bookingUrl": "",
+    "quoteValidityDays": 15
+  },
+  "objects": [
+    {
+      "id": "chaise",
+      "name": "Chaise",
+      "category": "Mobilier",
+      "price": 5,
+      "weightKg": 5,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "tabouret",
+      "name": "Tabouret",
+      "category": "Mobilier",
+      "price": 5,
+      "weightKg": 4,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "pouf",
+      "name": "Pouf",
+      "category": "Mobilier",
+      "price": 8,
+      "weightKg": 8,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "fauteuil",
+      "name": "Fauteuil",
+      "category": "Mobilier",
+      "price": 15,
+      "weightKg": 22,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "table_basse",
+      "name": "Table basse",
+      "category": "Mobilier",
+      "price": 12,
+      "weightKg": 15,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "table_chevet",
+      "name": "Table de chevet",
+      "category": "Mobilier",
+      "price": 8,
+      "weightKg": 10,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "petite_table",
+      "name": "Petite table",
+      "category": "Mobilier",
+      "price": 12,
+      "weightKg": 18,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "grande_table",
+      "name": "Grande table",
+      "category": "Mobilier",
+      "price": 20,
+      "weightKg": 45,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "bureau",
+      "name": "Bureau",
+      "category": "Mobilier",
+      "price": 25,
+      "weightKg": 38,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "bureau_angle",
+      "name": "Bureau d’angle",
+      "category": "Mobilier",
+      "price": 35,
+      "weightKg": 65,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "etagere",
+      "name": "Étagère",
+      "category": "Mobilier",
+      "price": 15,
+      "weightKg": 22,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "bibliotheque",
+      "name": "Bibliothèque",
+      "category": "Mobilier",
+      "price": 25,
+      "weightKg": 55,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "petite_commode",
+      "name": "Petite commode",
+      "category": "Mobilier",
+      "price": 15,
+      "weightKg": 30,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "grande_commode",
+      "name": "Grande commode",
+      "category": "Mobilier",
+      "price": 20,
+      "weightKg": 55,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "buffet",
+      "name": "Buffet",
+      "category": "Mobilier",
+      "price": 30,
+      "weightKg": 85,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "vaisselier",
+      "name": "Vaisselier",
+      "category": "Mobilier",
+      "price": 40,
+      "weightKg": 120,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "meuble_tv",
+      "name": "Meuble TV",
+      "category": "Mobilier",
+      "price": 15,
+      "weightKg": 28,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "meuble_cuisine",
+      "name": "Meuble de cuisine",
+      "category": "Mobilier",
+      "price": 25,
+      "weightKg": 45,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "armoire_2",
+      "name": "Armoire 2 portes",
+      "category": "Mobilier",
+      "price": 35,
+      "weightKg": 90,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "armoire_3",
+      "name": "Armoire 3 portes",
+      "category": "Mobilier",
+      "price": 45,
+      "weightKg": 135,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "dressing",
+      "name": "Dressing",
+      "category": "Mobilier",
+      "price": 60,
+      "weightKg": 180,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "lit_simple",
+      "name": "Lit simple",
+      "category": "Literie",
+      "price": 20,
+      "weightKg": 30,
+      "wasteType": "Literie",
+      "visible": true
+    },
+    {
+      "id": "lit_double",
+      "name": "Lit double",
+      "category": "Literie",
+      "price": 30,
+      "weightKg": 55,
+      "wasteType": "Literie",
+      "visible": true
+    },
+    {
+      "id": "sommier",
+      "name": "Sommier",
+      "category": "Literie",
+      "price": 15,
+      "weightKg": 22,
+      "wasteType": "Literie",
+      "visible": true
+    },
+    {
+      "id": "matelas_90",
+      "name": "Matelas 90 cm",
+      "category": "Literie",
+      "price": 15,
+      "weightKg": 15,
+      "wasteType": "Literie",
+      "visible": true
+    },
+    {
+      "id": "matelas_140",
+      "name": "Matelas 140 cm",
+      "category": "Literie",
+      "price": 20,
+      "weightKg": 28,
+      "wasteType": "Literie",
+      "visible": true
+    },
+    {
+      "id": "matelas_160",
+      "name": "Matelas 160 / 180 cm",
+      "category": "Literie",
+      "price": 25,
+      "weightKg": 40,
+      "wasteType": "Literie",
+      "visible": true
+    },
+    {
+      "id": "tete_lit",
+      "name": "Tête de lit",
+      "category": "Literie",
+      "price": 10,
+      "weightKg": 18,
+      "wasteType": "Literie",
+      "visible": true
+    },
+    {
+      "id": "canape_2",
+      "name": "Canapé 2 places",
+      "category": "Canapés",
+      "price": 35,
+      "weightKg": 55,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "canape_3",
+      "name": "Canapé 3 places",
+      "category": "Canapés",
+      "price": 45,
+      "weightKg": 75,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "canape_angle",
+      "name": "Canapé d’angle",
+      "category": "Canapés",
+      "price": 60,
+      "weightKg": 120,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "clic_clac",
+      "name": "Clic-clac",
+      "category": "Canapés",
+      "price": 35,
+      "weightKg": 65,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "bz",
+      "name": "BZ",
+      "category": "Canapés",
+      "price": 30,
+      "weightKg": 48,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "tv_80",
+      "name": "Télévision < 80 cm",
+      "category": "Informatique / TV",
+      "price": 10,
+      "weightKg": 8,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "grande_tv",
+      "name": "Grande télévision",
+      "category": "Informatique / TV",
+      "price": 15,
+      "weightKg": 18,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "ecran_pc",
+      "name": "Écran PC",
+      "category": "Informatique / TV",
+      "price": 8,
+      "weightKg": 5,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "ordinateur",
+      "name": "Ordinateur",
+      "category": "Informatique / TV",
+      "price": 10,
+      "weightKg": 9,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "imprimante",
+      "name": "Imprimante",
+      "category": "Informatique / TV",
+      "price": 8,
+      "weightKg": 8,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "carton",
+      "name": "Carton",
+      "category": "Petits objets",
+      "price": 3,
+      "weightKg": 10,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "sac_poubelle",
+      "name": "Sac poubelle 100 L",
+      "category": "Petits objets",
+      "price": 3,
+      "weightKg": 8,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "valise",
+      "name": "Valise",
+      "category": "Petits objets",
+      "price": 8,
+      "weightKg": 15,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "tapis",
+      "name": "Tapis",
+      "category": "Petits objets",
+      "price": 8,
+      "weightKg": 12,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "miroir",
+      "name": "Miroir",
+      "category": "Petits objets",
+      "price": 8,
+      "weightKg": 10,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "cadre",
+      "name": "Cadre",
+      "category": "Petits objets",
+      "price": 3,
+      "weightKg": 3,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "coffre_malle",
+      "name": "Coffre / Malle",
+      "category": "Petits objets",
+      "price": 20,
+      "weightKg": 25,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "refrigerateur",
+      "name": "Réfrigérateur",
+      "category": "Électroménager",
+      "price": 30,
+      "weightKg": 60,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "frigo_americain",
+      "name": "Réfrigérateur américain",
+      "category": "Électroménager",
+      "price": 60,
+      "weightKg": 120,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "congelateur",
+      "name": "Congélateur",
+      "category": "Électroménager",
+      "price": 30,
+      "weightKg": 55,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "lave_linge",
+      "name": "Lave-linge",
+      "category": "Électroménager",
+      "price": 25,
+      "weightKg": 75,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "seche_linge",
+      "name": "Sèche-linge",
+      "category": "Électroménager",
+      "price": 25,
+      "weightKg": 45,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "lave_vaisselle",
+      "name": "Lave-vaisselle",
+      "category": "Électroménager",
+      "price": 25,
+      "weightKg": 45,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "four",
+      "name": "Four",
+      "category": "Électroménager",
+      "price": 15,
+      "weightKg": 32,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "gaziniere",
+      "name": "Gazinière",
+      "category": "Électroménager",
+      "price": 20,
+      "weightKg": 55,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "plaque",
+      "name": "Plaque de cuisson",
+      "category": "Électroménager",
+      "price": 10,
+      "weightKg": 12,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "hotte",
+      "name": "Hotte",
+      "category": "Électroménager",
+      "price": 15,
+      "weightKg": 14,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "micro_ondes",
+      "name": "Micro-ondes",
+      "category": "Électroménager",
+      "price": 10,
+      "weightKg": 14,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "lavabo",
+      "name": "Lavabo",
+      "category": "Salle de bain / Cuisine",
+      "price": 15,
+      "weightKg": 18,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "wc",
+      "name": "WC",
+      "category": "Salle de bain / Cuisine",
+      "price": 20,
+      "weightKg": 35,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "evier",
+      "name": "Évier",
+      "category": "Salle de bain / Cuisine",
+      "price": 15,
+      "weightKg": 15,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "douche",
+      "name": "Douche",
+      "category": "Salle de bain / Cuisine",
+      "price": 35,
+      "weightKg": 65,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "baignoire",
+      "name": "Baignoire",
+      "category": "Salle de bain / Cuisine",
+      "price": 40,
+      "weightKg": 80,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "cuisine_complete",
+      "name": "Cuisine complète",
+      "category": "Salle de bain / Cuisine",
+      "price": 180,
+      "weightKg": 450,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "velo",
+      "name": "Vélo",
+      "category": "Extérieur / Divers",
+      "price": 15,
+      "weightKg": 15,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "trottinette",
+      "name": "Trottinette",
+      "category": "Extérieur / Divers",
+      "price": 10,
+      "weightKg": 8,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "tondeuse",
+      "name": "Tondeuse",
+      "category": "Extérieur / Divers",
+      "price": 15,
+      "weightKg": 28,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "barbecue",
+      "name": "Barbecue",
+      "category": "Extérieur / Divers",
+      "price": 20,
+      "weightKg": 25,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "salon_jardin",
+      "name": "Salon de jardin",
+      "category": "Extérieur / Divers",
+      "price": 35,
+      "weightKg": 50,
+      "wasteType": "Mobilier",
+      "visible": true
+    },
+    {
+      "id": "palette",
+      "name": "Palette",
+      "category": "Extérieur / Divers",
+      "price": 8,
+      "weightKg": 22,
+      "wasteType": "Bois",
+      "visible": true
+    },
+    {
+      "id": "pneu",
+      "name": "Pneu",
+      "category": "Extérieur / Divers",
+      "price": 15,
+      "weightKg": 10,
+      "wasteType": "Pneus",
+      "visible": true
+    },
+    {
+      "id": "bidon_bac",
+      "name": "Bidon / Bac",
+      "category": "Extérieur / Divers",
+      "price": 5,
+      "weightKg": 6,
+      "wasteType": "Tout-venant",
+      "visible": true
+    },
+    {
+      "id": "ferraille",
+      "name": "Ferraille petit lot",
+      "category": "Extérieur / Divers",
+      "price": 15,
+      "weightKg": 25,
+      "wasteType": "Tout-venant",
+      "visible": true
+    }
+  ],
+  "portfolio": {
+    "categories": [
+      {
+        "id": "dechets-verts",
+        "title": "Débarras déchets verts",
+        "description": "Vidéo du chantier déchets verts. Utilisez les commandes de lecture pour lancer, mettre en pause ou agrandir la vidéo.",
+        "visible": true,
+        "order": 0,
+        "projects": [
+          {
+            "id": "dechets-verts-chantier-1",
+            "title": "Débarras déchets verts",
+            "description": "",
+            "order": 0,
+            "media": [
+              {
+                "id": "dechets-verts-video-1",
+                "type": "video",
+                "src": "assets/portfolio/dechets-verts/video-1.mp4",
+                "label": "Vidéo",
+                "alt": "Débarras déchets verts — vidéo",
+                "order": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cave",
+        "title": "Cave",
+        "description": "Débarras de cave en avant / après.",
+        "visible": true,
+        "order": 1,
+        "projects": [
+          {
+            "id": "cave-chantier-1",
+            "title": "Cave — chantier 1",
+            "description": "",
+            "order": 0,
+            "media": [
+              {
+                "id": "cave-chantier-1-media-1",
+                "type": "image",
+                "src": "assets/portfolio/cave/chantier-1-avant-1.jpg",
+                "label": "Avant",
+                "alt": "Cave avant chantier 1",
+                "order": 0
+              },
+              {
+                "id": "cave-chantier-1-media-2",
+                "type": "image",
+                "src": "assets/portfolio/cave/chantier-1-apres-2.jpg",
+                "label": "Après",
+                "alt": "Cave après chantier 1",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "id": "cave-chantier-2",
+            "title": "Cave — chantier 2",
+            "description": "",
+            "order": 1,
+            "media": [
+              {
+                "id": "cave-chantier-2-media-1",
+                "type": "image",
+                "src": "assets/portfolio/cave/chantier-2-avant-1.jpg",
+                "label": "Avant",
+                "alt": "Cave avant chantier 2",
+                "order": 0
+              },
+              {
+                "id": "cave-chantier-2-media-2",
+                "type": "image",
+                "src": "assets/portfolio/cave/chantier-2-apres-2.jpg",
+                "label": "Après",
+                "alt": "Cave après chantier 2",
+                "order": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "garage",
+        "title": "Garage",
+        "description": "Enlèvement de mobilier, outillage, électroménager, cartons et tout-venant.",
+        "visible": true,
+        "order": 2,
+        "projects": []
+      },
+      {
+        "id": "grenier",
+        "title": "Grenier",
+        "description": "Débarras de grenier en avant / après.",
+        "visible": true,
+        "order": 3,
+        "projects": [
+          {
+            "id": "grenier-chantier-1",
+            "title": "Grenier — chantier 1",
+            "description": "",
+            "order": 0,
+            "media": [
+              {
+                "id": "grenier-chantier-1-media-1",
+                "type": "image",
+                "src": "assets/portfolio/grenier/chantier-1-avant-1.jpg",
+                "label": "Avant",
+                "alt": "Grenier avant chantier 1",
+                "order": 0
+              },
+              {
+                "id": "grenier-chantier-1-media-2",
+                "type": "image",
+                "src": "assets/portfolio/grenier/chantier-1-apres-2.jpg",
+                "label": "Après",
+                "alt": "Grenier après chantier 1",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "id": "grenier-chantier-2",
+            "title": "Grenier — chantier 2",
+            "description": "",
+            "order": 1,
+            "media": [
+              {
+                "id": "grenier-chantier-2-media-1",
+                "type": "image",
+                "src": "assets/portfolio/grenier/chantier-2-avant-1.jpg",
+                "label": "Avant",
+                "alt": "Grenier avant chantier 2",
+                "order": 0
+              },
+              {
+                "id": "grenier-chantier-2-media-2",
+                "type": "image",
+                "src": "assets/portfolio/grenier/chantier-2-apres-2.jpg",
+                "label": "Après",
+                "alt": "Grenier après chantier 2",
+                "order": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "appartement",
+        "title": "Appartement complet",
+        "description": "Débarras / remise en état d’appartement en avant / après.",
+        "visible": true,
+        "order": 4,
+        "projects": [
+          {
+            "id": "appartement-chantier-1",
+            "title": "Appartement complet — chantier 1",
+            "description": "",
+            "order": 0,
+            "media": [
+              {
+                "id": "appartement-chantier-1-media-1",
+                "type": "image",
+                "src": "assets/portfolio/appartement/chantier-1-avant-1.jpg",
+                "label": "Avant",
+                "alt": "Appartement complet photo 1",
+                "order": 0
+              },
+              {
+                "id": "appartement-chantier-1-media-2",
+                "type": "image",
+                "src": "assets/portfolio/appartement/chantier-1-apres-2.jpg",
+                "label": "Après",
+                "alt": "Appartement complet photo 2",
+                "order": 1
+              }
+            ]
+          },
+          {
+            "id": "appartement-chantier-2",
+            "title": "Appartement complet — chantier 2",
+            "description": "",
+            "order": 1,
+            "media": [
+              {
+                "id": "appartement-chantier-2-media-1",
+                "type": "image",
+                "src": "assets/portfolio/appartement/chantier-2-avant-1.jpg",
+                "label": "Avant",
+                "alt": "Appartement complet photo 3",
+                "order": 0
+              },
+              {
+                "id": "appartement-chantier-2-media-2",
+                "type": "image",
+                "src": "assets/portfolio/appartement/chantier-2-apres-2.jpg",
+                "label": "Après",
+                "alt": "Appartement complet photo 4",
+                "order": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "maison",
+        "title": "Maison complète",
+        "description": "Débarras complet de maison : mobilier, électroménager, cartons, caves, garages, greniers et tout-venant.",
+        "visible": true,
+        "order": 5,
+        "projects": []
+      }
+    ]
+  }
+}
