@@ -715,25 +715,17 @@
           },
           {
             "id": "cave-chantier-2",
-            "title": "Cave — chantier 2",
+            "title": "",
             "description": "",
             "order": 1,
             "media": [
-              {
-                "id": "cave-chantier-2-media-1",
-                "type": "image",
-                "src": "assets/portfolio/cave/chantier-2-avant-1.jpg",
-                "label": "Avant",
-                "alt": "Cave avant chantier 2",
-                "order": 0
-              },
               {
                 "id": "cave-chantier-2-media-2",
                 "type": "image",
                 "src": "assets/portfolio/cave/chantier-2-apres-2.jpg",
                 "label": "Après",
                 "alt": "Cave après chantier 2",
-                "order": 1
+                "order": 0
               }
             ]
           }
@@ -870,5 +862,6 @@
         "projects": []
       }
     ]
-  }
+  },
+  "updatedAt": "2026-07-12T12:33:59.396Z"
 }
