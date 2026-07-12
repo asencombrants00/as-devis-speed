@@ -830,8 +830,8 @@
         "projects": [
           {
             "id": "appartement-chantier-1",
-            "title": "Appartement complet — chantier 1",
-            "description": "",
+            "title": "Débarras Cuisine + Démontage à Annonay (07)",
+            "description": "Démontage et enlèvement d'une cuisine complète.",
             "order": 0,
             "media": [
               {
@@ -849,30 +849,14 @@
                 "label": "Après",
                 "alt": "Appartement complet photo 2",
                 "order": 1
-              }
-            ]
-          },
-          {
-            "id": "appartement-chantier-2",
-            "title": "Appartement complet — chantier 2",
-            "description": "",
-            "order": 1,
-            "media": [
-              {
-                "id": "appartement-chantier-2-media-1",
-                "type": "image",
-                "src": "assets/portfolio/appartement/chantier-2-avant-1.jpg",
-                "label": "Avant",
-                "alt": "Appartement complet photo 3",
-                "order": 0
               },
               {
-                "id": "appartement-chantier-2-media-2",
+                "id": "appartement-chantier-1-media-1783862538875-rvvemh",
                 "type": "image",
-                "src": "assets/portfolio/appartement/chantier-2-apres-2.jpg",
-                "label": "Après",
-                "alt": "Appartement complet photo 4",
-                "order": 1
+                "src": "assets/portfolio/appartement/1783862537663-1-715473084-122178857708838655-4401605510732811433-n.webp",
+                "label": "Avant",
+                "alt": "Appartement complet — Avant",
+                "order": 2
               }
             ]
           }
@@ -888,5 +872,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T13:05:10.063Z"
+  "updatedAt": "2026-07-12T13:22:18.881Z"
 }
