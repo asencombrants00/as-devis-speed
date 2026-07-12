@@ -912,10 +912,35 @@
         "visible": true,
         "order": 5,
         "projects": []
+      },
+      {
+        "id": "jardin-exterieur",
+        "title": "Enlèvement d'encombrants Jardin/Exterieurs",
+        "description": "Enlèvement d'encombrants Jardin/Exterieurs de déchets divers... ",
+        "visible": true,
+        "order": 6,
+        "projects": [
+          {
+            "id": "jardin-exterieur-chantier-1783865034605-raeaks",
+            "title": "Enlèvement d'encombrants Jardin - Albon (26) ",
+            "description": "",
+            "order": 0,
+            "media": [
+              {
+                "id": "jardin-exterieur-chantier-1783865034605-raeaks-media-1783865077120-luu8yi",
+                "type": "video",
+                "src": "assets/portfolio/jardin-exterieur/1783865074364-1-chantier-saint-rambert-d-albon.mp4",
+                "label": "Avant",
+                "alt": "Enlèvement d'encombrants Jardin/Exterieurs — Avant",
+                "order": 0
+              }
+            ]
+          }
+        ]
       }
     ]
   },
-  "updatedAt": "2026-07-12T14:02:51.447Z",
+  "updatedAt": "2026-07-12T14:04:37.121Z",
   "requests": {
     "supabaseUrl": "https://nowycqfbrvblaxfawyza.supabase.co",
     "supabaseAnonKey": "sb_publishable_bixc6gH-llRog60fKQ_6qw_Prz-zE81"
