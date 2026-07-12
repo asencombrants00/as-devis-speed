@@ -16,6 +16,11 @@ const state = {
   selectedCategoryId: '',
   activeTab: 'dashboard',
   busy: false,
+  requestsClient: null,
+  requestsClientSignature: '',
+  requestsConnected: false,
+  requests: [],
+  selectedRequestId: '',
 };
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -130,6 +135,7 @@ async function loadRepositoryData() {
   state.selectedCategoryId = parsed.portfolio.categories[0]?.id || '';
   clearDirty();
   renderEverything();
+  await restoreRequestsSession();
 }
 
 async function saveRepositoryData(commitMessage = 'Mise à jour du site depuis l’administration') {
@@ -240,6 +246,7 @@ function renderEverything() {
   renderObjectList();
   renderSiteForm();
   renderQuoteFields();
+  renderRequestsSetup();
   $('#repoLabel').textContent = `${state.owner}/${state.repo} — branche ${state.branch}`;
 }
 
@@ -252,6 +259,12 @@ function renderDashboard() {
   $('#statProjects').textContent = projects.length;
   $('#statMedia').textContent = media.length;
   $('#statObjects').textContent = currentObjects().filter(item => item.visible !== false).length;
+  const newRequests = state.requests.filter(item => ['new', 'review'].includes(item.status || 'new')).length;
+  if ($('#statRequests')) $('#statRequests').textContent = newRequests;
+  if ($('#requestsNavCount')) {
+    $('#requestsNavCount').textContent = newRequests;
+    $('#requestsNavCount').classList.toggle('hidden', newRequests === 0);
+  }
 }
 
 function setActiveTab(tab) {
@@ -260,6 +273,7 @@ function setActiveTab(tab) {
   $$('.tab-panel').forEach(panel => panel.classList.toggle('active', panel.id === `tab-${tab}`));
   const titles = {
     dashboard: 'Tableau de bord',
+    requests: 'Demandes clientes',
     portfolio: 'Portefeuille',
     objects: 'Objets et tarifs',
     site: 'Textes du site',
@@ -527,15 +541,32 @@ function openObjectEditor(objectId = '') {
   const modal = $('#objectEditor');
   const existing = currentObjects().find(item => item.id === objectId);
   const item = existing ? { ...existing } : { id: '', name: '', category: 'Mobilier', price: 0, weightKg: 0, wasteType: 'Mobilier', visible: true };
-  const wasteTypes = ['Bois', 'Déchets verts', 'Mobilier', 'Literie', 'Tout-venant', 'Pneus', 'Électroménager', 'Ferraille / Métaux', 'Gravats', 'Mixte', 'Autre'];
-  const categories = [...new Set(currentObjects().map(object => object.category))].sort();
+  const objectCategories = [
+    'Mobilier',
+    'Literie',
+    'Canapés',
+    'Informatique / TV',
+    'Petits objets',
+    'Électroménager',
+    'Salle de bain / Cuisine',
+    'Extérieur / Divers',
+  ];
+  const defaultWasteTypeByCategory = {
+    'Mobilier': 'Mobilier',
+    'Literie': 'Literie',
+    'Canapés': 'Mobilier',
+    'Informatique / TV': 'Tout-venant',
+    'Petits objets': 'Tout-venant',
+    'Électroménager': 'Tout-venant',
+    'Salle de bain / Cuisine': 'Tout-venant',
+    'Extérieur / Divers': 'Tout-venant',
+  };
   modal.innerHTML = `<div class="modal-card">
     <div class="modal-head"><h3>${existing ? 'Modifier l’objet' : 'Ajouter un objet'}</h3><button class="close-button" type="button">×</button></div>
     <form id="objectForm" class="form-grid">
       <label>Nom de l’objet<input id="objectNameInput" value="${escapeHtml(item.name)}" required></label>
       <label>Identifiant<input id="objectIdInput" value="${escapeHtml(item.id)}" placeholder="créé automatiquement"></label>
-      <label>Catégorie<input id="objectCategoryInput" list="objectCategoryList" value="${escapeHtml(item.category)}" required><datalist id="objectCategoryList">${categories.map(category => `<option value="${escapeHtml(category)}">`).join('')}</datalist></label>
-      <label>Type de déchet<select id="objectWasteInput">${wasteTypes.map(type => `<option ${item.wasteType === type ? 'selected' : ''}>${escapeHtml(type)}</option>`).join('')}</select></label>
+      <label>Catégorie de l’objet<select id="objectCategoryInput" required>${objectCategories.map(category => `<option value="${escapeHtml(category)}" ${item.category === category ? 'selected' : ''}>${escapeHtml(category)}</option>`).join('')}</select><small>Le bouton « Tous » est ajouté automatiquement sur le site.</small></label>
       <label>Prix unitaire interne (€)<input id="objectPriceInput" type="number" min="0" step="0.01" value="${Number(item.price || 0)}" required></label>
       <label>Poids unitaire interne (kg)<input id="objectWeightInput" type="number" min="0" step="0.1" value="${Number(item.weightKg || 0)}" required></label>
       <label class="checkbox-label full"><input id="objectVisibleInput" type="checkbox" ${item.visible !== false ? 'checked' : ''}> Afficher cet objet dans le panier client</label>
@@ -554,13 +585,17 @@ function openObjectEditor(objectId = '') {
     const newId = slugify($('#objectIdInput', modal).value || $('#objectNameInput', modal).value).replaceAll('-', '_');
     const duplicate = currentObjects().some(object => object.id === newId && (!existing || object.id !== existing.id));
     if (duplicate) return alert('Cet identifiant existe déjà. Choisis-en un autre.');
+    const selectedCategory = $('#objectCategoryInput', modal).value;
     const updated = {
       id: newId,
       name: $('#objectNameInput', modal).value.trim(),
-      category: $('#objectCategoryInput', modal).value.trim(),
+      category: selectedCategory,
       price: Number($('#objectPriceInput', modal).value || 0),
       weightKg: Number($('#objectWeightInput', modal).value || 0),
-      wasteType: $('#objectWasteInput', modal).value,
+      // Ce champ reste interne pour calculer les frais de déchetterie.
+      // Pour un objet existant, on garde sa valeur actuelle. Pour un nouvel objet,
+      // une valeur simple est choisie automatiquement selon la catégorie du site.
+      wasteType: existing?.wasteType || defaultWasteTypeByCategory[selectedCategory] || 'Tout-venant',
       visible: $('#objectVisibleInput', modal).checked,
     };
     if (existing) Object.assign(existing, updated);
@@ -578,6 +613,297 @@ function openObjectEditor(objectId = '') {
     renderObjectList();
     renderDashboard();
   });
+}
+
+
+const REQUEST_STATUS_LABELS = {
+  new: 'Nouvelle',
+  review: 'À vérifier',
+  quoted: 'Devis envoyé',
+  accepted: 'Acceptée',
+  refused: 'Refusée',
+  done: 'Terminée',
+};
+
+function getRequestsConfig() {
+  const config = state.data?.requests || {};
+  return {
+    url: String(config.supabaseUrl || '').trim().replace(/\/$/, ''),
+    key: String(config.supabaseAnonKey || '').trim(),
+  };
+}
+
+function getRequestsClient() {
+  const { url, key } = getRequestsConfig();
+  if (!url || !key) throw new Error('Enregistre d’abord l’adresse Supabase et la clé publique.');
+  if (!window.supabase?.createClient) throw new Error('Le module des demandes ne s’est pas chargé. Recharge la page.');
+  const signature = `${url}|${key}`;
+  if (!state.requestsClient || state.requestsClientSignature !== signature) {
+    state.requestsClient = window.supabase.createClient(url, key, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: false,
+        storageKey: 'as-encombrants-demandes-auth',
+      },
+    });
+    state.requestsClientSignature = signature;
+  }
+  return state.requestsClient;
+}
+
+function renderRequestsSetup() {
+  if (!state.data) return;
+  const config = getRequestsConfig();
+  if ($('#requestsSupabaseUrl')) $('#requestsSupabaseUrl').value = config.url;
+  if ($('#requestsSupabaseKey')) $('#requestsSupabaseKey').value = config.key;
+  if ($('#requestsAdminEmail')) $('#requestsAdminEmail').value = localStorage.getItem('asRequestsAdminEmail') || '';
+  updateRequestsConnectionView();
+}
+
+function updateRequestsConnectionView() {
+  const connected = state.requestsConnected;
+  $('#requestsWorkspace')?.classList.toggle('hidden', !connected);
+  $('#disconnectRequestsButton')?.classList.toggle('hidden', !connected);
+  $('#connectRequestsButton')?.classList.toggle('hidden', connected);
+}
+
+async function saveRequestsConfig() {
+  const url = $('#requestsSupabaseUrl').value.trim().replace(/\/$/, '');
+  const key = $('#requestsSupabaseKey').value.trim();
+  if (!url || !key) return setStatus($('#requestsStatus'), 'Colle l’adresse Supabase et la clé publique.', 'error');
+  state.data.requests = { supabaseUrl: url, supabaseAnonKey: key };
+  state.requestsClient = null;
+  state.requestsClientSignature = '';
+  markDirty();
+  setStatus($('#requestsStatus'), 'Enregistrement sur GitHub…');
+  try {
+    await saveRepositoryData('Activation des demandes clientes dans l’administration');
+    setStatus($('#requestsStatus'), 'Connexion enregistrée. Passe maintenant à l’étape 2.', 'success');
+  } catch (error) {
+    setStatus($('#requestsStatus'), `Enregistrement impossible : ${error.message}`, 'error');
+  }
+}
+
+async function connectRequests() {
+  const email = $('#requestsAdminEmail').value.trim();
+  const password = $('#requestsAdminPassword').value;
+  if (!email || !password) return setStatus($('#requestsStatus'), 'Indique ton email et ton mot de passe Supabase.', 'error');
+  setStatus($('#requestsStatus'), 'Ouverture des demandes…');
+  try {
+    const client = getRequestsClient();
+    const { error } = await client.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    localStorage.setItem('asRequestsAdminEmail', email);
+    $('#requestsAdminPassword').value = '';
+    state.requestsConnected = true;
+    updateRequestsConnectionView();
+    await loadRequests();
+    setStatus($('#requestsStatus'), 'Demandes ouvertes.', 'success');
+  } catch (error) {
+    setStatus($('#requestsStatus'), `Connexion impossible : ${error.message}`, 'error');
+  }
+}
+
+async function restoreRequestsSession() {
+  const { url, key } = getRequestsConfig();
+  if (!url || !key) return;
+  try {
+    const client = getRequestsClient();
+    const { data, error } = await client.auth.getSession();
+    if (error) throw error;
+    if (data?.session) {
+      state.requestsConnected = true;
+      updateRequestsConnectionView();
+      await loadRequests();
+      setStatus($('#requestsStatus'), 'Demandes ouvertes.', 'success');
+    }
+  } catch (error) {
+    console.warn('Session demandes non restaurée :', error);
+  }
+}
+
+async function disconnectRequests() {
+  try {
+    await state.requestsClient?.auth.signOut();
+  } catch { /* rien */ }
+  state.requestsConnected = false;
+  state.requests = [];
+  state.selectedRequestId = '';
+  updateRequestsConnectionView();
+  renderRequestsList();
+  renderRequestDetail();
+  renderDashboard();
+  setStatus($('#requestsStatus'), 'Demandes fermées.');
+}
+
+async function loadRequests() {
+  if (!state.requestsConnected) return;
+  setStatus($('#requestsStatus'), 'Chargement des demandes…');
+  try {
+    const client = getRequestsClient();
+    const { data, error } = await client
+      .from('quote_requests')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(500);
+    if (error) throw error;
+    state.requests = Array.isArray(data) ? data : [];
+    if (state.selectedRequestId && !state.requests.some(item => item.id === state.selectedRequestId)) state.selectedRequestId = '';
+    renderRequestsList();
+    renderRequestDetail();
+    renderDashboard();
+    setStatus($('#requestsStatus'), `${state.requests.length} demande(s) chargée(s).`, 'success');
+  } catch (error) {
+    setStatus($('#requestsStatus'), `Chargement impossible : ${error.message}`, 'error');
+  }
+}
+
+function requestDate(value) {
+  if (!value) return '';
+  try {
+    return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short' }).format(new Date(value));
+  } catch { return value; }
+}
+
+function renderRequestsList() {
+  const root = $('#requestsList');
+  if (!root) return;
+  if (!state.requestsConnected) {
+    root.innerHTML = '';
+    return;
+  }
+  const query = ($('#requestsSearch')?.value || '').trim().toLowerCase();
+  const status = $('#requestsStatusFilter')?.value || '';
+  const filtered = state.requests.filter(item => {
+    const text = `${item.name || ''} ${item.phone || ''} ${item.email || ''} ${item.city || ''} ${item.address || ''}`.toLowerCase();
+    return (!query || text.includes(query)) && (!status || (item.status || 'new') === status);
+  });
+  if (!filtered.length) {
+    root.innerHTML = '<div class="empty-state">Aucune demande trouvée.</div>';
+    return;
+  }
+  root.innerHTML = filtered.map(item => {
+    const itemStatus = item.status || 'new';
+    return `<button type="button" class="request-card ${item.id === state.selectedRequestId ? 'selected' : ''}" data-request-id="${escapeHtml(item.id)}">
+      <span class="request-card-top"><strong>${escapeHtml(item.name || 'Client sans nom')}</strong><span class="request-status status-${escapeHtml(itemStatus)}">${escapeHtml(REQUEST_STATUS_LABELS[itemStatus] || itemStatus)}</span></span>
+      <span>${escapeHtml(item.city || item.address || 'Adresse non renseignée')}</span>
+      <span>${Number(item.estimate || 0).toLocaleString('fr-FR')} € · ${escapeHtml(requestDate(item.created_at))}</span>
+    </button>`;
+  }).join('');
+  $$('.request-card', root).forEach(button => button.addEventListener('click', () => {
+    state.selectedRequestId = button.dataset.requestId;
+    renderRequestsList();
+    renderRequestDetail();
+  }));
+}
+
+function renderRequestDetail() {
+  const root = $('#requestDetail');
+  if (!root) return;
+  const item = state.requests.find(request => request.id === state.selectedRequestId);
+  if (!item) {
+    root.innerHTML = '<div class="empty-state">Choisis une demande à gauche.</div>';
+    return;
+  }
+  const itemStatus = item.status || 'new';
+  const statusOptions = Object.entries(REQUEST_STATUS_LABELS).map(([value, label]) => `<option value="${value}" ${itemStatus === value ? 'selected' : ''}>${escapeHtml(label)}</option>`).join('');
+  root.innerHTML = `
+    <div class="request-detail-head">
+      <div><h2>${escapeHtml(item.name || 'Client')}</h2><p>${escapeHtml(requestDate(item.created_at))}</p></div>
+      <span class="request-status status-${escapeHtml(itemStatus)}">${escapeHtml(REQUEST_STATUS_LABELS[itemStatus] || itemStatus)}</span>
+    </div>
+    <div class="request-contact-grid">
+      <a href="tel:${escapeHtml(item.phone || '')}"><span>Téléphone</span><strong>${escapeHtml(item.phone || 'Non renseigné')}</strong></a>
+      <a href="mailto:${escapeHtml(item.email || '')}"><span>Email</span><strong>${escapeHtml(item.email || 'Non renseigné')}</strong></a>
+      <div class="full"><span>Adresse</span><strong>${escapeHtml([item.address, item.city].filter(Boolean).join(', ') || 'Non renseignée')}</strong></div>
+    </div>
+    <div class="request-block"><h3>Objets / demande</h3><pre>${escapeHtml(item.items || 'Non renseigné')}</pre></div>
+    <div class="request-block"><h3>Accès</h3><pre>${escapeHtml(item.access_details || 'Non renseigné')}</pre></div>
+    <div class="request-block"><h3>Informations complémentaires</h3><pre>${escapeHtml(item.additional_info || 'Aucune')}</pre></div>
+    <div class="request-numbers">
+      <div><span>Estimation</span><strong>${Number(item.estimate || 0).toLocaleString('fr-FR')} €</strong></div>
+      <div><span>Poids estimé</span><strong>${Number(item.estimated_weight_kg || 0).toFixed(1)} kg</strong></div>
+      <div><span>Distance</span><strong>${Number(item.travel_distance_km || 0).toFixed(1)} km</strong></div>
+      <div><span>Photos</span><strong>${Number(item.photo_count || 0)}</strong></div>
+    </div>
+    ${item.photos_link ? `<p><a href="${escapeHtml(item.photos_link)}" target="_blank" rel="noopener">Ouvrir le lien des photos</a></p>` : ''}
+    ${Number(item.photo_count || 0) > 0 && !item.photos_link ? '<div class="warning">Les fichiers photos joints continuent d’arriver par mail. Seul leur nombre est affiché ici.</div>' : ''}
+    <div class="form-grid request-admin-fields">
+      <label>Statut<select id="requestStatusInput">${statusOptions}</select></label>
+      <label>Prix final du devis (€)<input id="requestQuotePriceInput" type="number" min="0" step="1" value="${Number(item.quote_price ?? item.estimate ?? 0)}"></label>
+      <label class="full">Note privée<textarea id="requestAdminNoteInput" rows="3">${escapeHtml(item.admin_note || '')}</textarea></label>
+    </div>
+    <details class="request-technical"><summary>Voir les calculs internes</summary><pre>${escapeHtml([item.internal_calculation, item.travel_details].filter(Boolean).join('\n\n'))}</pre></details>
+    <div class="button-row">
+      <button id="saveRequestButton" class="button secondary" type="button">Enregistrer</button>
+      <button id="prepareRequestQuoteButton" class="button primary" type="button">Préparer le devis</button>
+      <button id="deleteRequestButton" class="button danger" type="button">Supprimer</button>
+    </div>`;
+  $('#saveRequestButton').addEventListener('click', saveSelectedRequest);
+  $('#prepareRequestQuoteButton').addEventListener('click', prepareQuoteFromSelectedRequest);
+  $('#deleteRequestButton').addEventListener('click', deleteSelectedRequest);
+}
+
+async function saveSelectedRequest() {
+  const item = state.requests.find(request => request.id === state.selectedRequestId);
+  if (!item) return;
+  const changes = {
+    status: $('#requestStatusInput').value,
+    quote_price: Number($('#requestQuotePriceInput').value || 0),
+    admin_note: $('#requestAdminNoteInput').value.trim(),
+    updated_at: new Date().toISOString(),
+  };
+  setStatus($('#requestsStatus'), 'Enregistrement de la demande…');
+  try {
+    const client = getRequestsClient();
+    const { error } = await client.from('quote_requests').update(changes).eq('id', item.id);
+    if (error) throw error;
+    Object.assign(item, changes);
+    renderRequestsList();
+    renderRequestDetail();
+    renderDashboard();
+    setStatus($('#requestsStatus'), 'Demande enregistrée.', 'success');
+  } catch (error) {
+    setStatus($('#requestsStatus'), `Enregistrement impossible : ${error.message}`, 'error');
+  }
+}
+
+function prepareQuoteFromSelectedRequest() {
+  const item = state.requests.find(request => request.id === state.selectedRequestId);
+  if (!item) return;
+  renderQuoteFields();
+  $('#rawRequest').value = item.raw_message || '';
+  $('#quoteName').value = item.name || '';
+  $('#quotePhone').value = item.phone || '';
+  $('#quoteEmail').value = item.email || '';
+  $('#quoteCity').value = item.city || '';
+  $('#quoteAddress').value = item.address || '';
+  $('#quoteObjects').value = item.items || '';
+  $('#quoteAccess').value = item.access_details || '';
+  $('#quotePrice').value = Number(item.quote_price ?? item.estimate ?? 0);
+  $('#quoteNotes').value = [item.additional_info, item.admin_note].filter(Boolean).join('\n');
+  generateQuoteOutput();
+  setActiveTab('quotes');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function deleteSelectedRequest() {
+  const item = state.requests.find(request => request.id === state.selectedRequestId);
+  if (!item || !confirm(`Supprimer définitivement la demande de ${item.name || 'ce client'} ?`)) return;
+  try {
+    const client = getRequestsClient();
+    const { error } = await client.from('quote_requests').delete().eq('id', item.id);
+    if (error) throw error;
+    state.requests = state.requests.filter(request => request.id !== item.id);
+    state.selectedRequestId = '';
+    renderRequestsList();
+    renderRequestDetail();
+    renderDashboard();
+    setStatus($('#requestsStatus'), 'Demande supprimée.', 'success');
+  } catch (error) {
+    setStatus($('#requestsStatus'), `Suppression impossible : ${error.message}`, 'error');
+  }
 }
 
 function renderSiteForm() {
@@ -750,6 +1076,9 @@ function logout() {
   sessionStorage.removeItem('asAdminToken');
   state.token = '';
   state.data = null;
+  state.requestsConnected = false;
+  state.requests = [];
+  state.selectedRequestId = '';
   $('#tokenInput').value = '';
   $('#appView').classList.add('hidden');
   $('#loginView').classList.remove('hidden');
@@ -783,6 +1112,12 @@ function initialize() {
   $('#logoutButton').addEventListener('click', logout);
   $('#publishButton').addEventListener('click', () => saveRepositoryData());
   $('#reloadButton').addEventListener('click', reloadFromGitHub);
+  $('#saveRequestsConfigButton').addEventListener('click', saveRequestsConfig);
+  $('#connectRequestsButton').addEventListener('click', connectRequests);
+  $('#disconnectRequestsButton').addEventListener('click', disconnectRequests);
+  $('#refreshRequestsButton').addEventListener('click', loadRequests);
+  $('#requestsSearch').addEventListener('input', renderRequestsList);
+  $('#requestsStatusFilter').addEventListener('change', renderRequestsList);
   $('#addCategoryButton').addEventListener('click', addCategory);
   $('#addObjectButton').addEventListener('click', () => openObjectEditor());
   $('#objectSearch').addEventListener('input', renderObjectList);
