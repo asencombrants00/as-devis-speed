@@ -881,6 +881,14 @@
                 "label": "Avant",
                 "alt": "Appartement complet — Avant",
                 "order": 0
+              },
+              {
+                "id": "appartement-chantier-1783862559004-37k4ba-media-1783862618030-ry6uhw",
+                "type": "video",
+                "src": "assets/portfolio/appartement/1783862608367-1-appartement-annonay.mp4",
+                "label": "Avant",
+                "alt": "Appartement complet — Avant",
+                "order": 1
               }
             ]
           }
@@ -896,5 +904,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T13:23:32.813Z"
+  "updatedAt": "2026-07-12T13:23:38.031Z"
 }
