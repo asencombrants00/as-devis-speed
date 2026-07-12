@@ -679,7 +679,7 @@
       "price": 20,
       "weightKg": 40,
       "wasteType": "Tout-venant",
-      "visible": false
+      "visible": true
     },
     {
       "id": "petits_objets_divers_60kg",
@@ -923,5 +923,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T13:46:07.030Z"
+  "updatedAt": "2026-07-12T13:46:13.886Z"
 }
