@@ -940,9 +940,14 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T14:04:45.918Z",
+  "updatedAt": "2026-07-12T15:22:08.550Z",
   "requests": {
     "supabaseUrl": "https://nowycqfbrvblaxfawyza.supabase.co",
     "supabaseAnonKey": "sb_publishable_bixc6gH-llRog60fKQ_6qw_Prz-zE81"
+  },
+  "quoteEmail": {
+    "publicKey": "iUkwvIEWL6lr0ZmNn",
+    "serviceId": "service_f75sdw2",
+    "templateId": "devis_client"
   }
 }
