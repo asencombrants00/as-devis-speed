@@ -710,14 +710,6 @@
                 "label": "Après",
                 "alt": "Cave après chantier 1",
                 "order": 1
-              },
-              {
-                "id": "cave-chantier-1-media-1783859672649-0inh5f",
-                "type": "image",
-                "src": "assets/portfolio/cave/1783859671444-1-2-avant.webp",
-                "label": "Avant",
-                "alt": "Cave — Avant",
-                "order": 2
               }
             ]
           }
@@ -855,5 +847,5 @@
       }
     ]
   },
-  "updatedAt": "2026-07-12T12:34:46.579Z"
+  "updatedAt": "2026-07-12T12:34:49.403Z"
 }
