@@ -689,6 +689,15 @@
       "weightKg": 60,
       "wasteType": "Tout-venant",
       "visible": true
+    },
+    {
+      "id": "congelateur_coffre",
+      "name": "Congélateur Coffre",
+      "category": "Électroménager",
+      "price": 35,
+      "weightKg": 60,
+      "wasteType": "Tout-venant",
+      "visible": true
     }
   ],
   "portfolio": {
@@ -940,7 +949,7 @@
       }
     ]
   },
-  "updatedAt": "2026-07-13T17:47:53.934Z",
+  "updatedAt": "2026-07-13T20:17:16.636Z",
   "requests": {
     "supabaseUrl": "https://nowycqfbrvblaxfawyza.supabase.co",
     "supabaseAnonKey": "sb_publishable_bixc6gH-llRog60fKQ_6qw_Prz-zE81"
