@@ -1,0 +1,19 @@
+/* Vidéos dynamiques de la page d’accueil */
+.hero-video-card{position:relative;min-height:350px;border-radius:var(--radius);overflow:hidden;background:#090909;color:#fff;box-shadow:var(--shadow);isolation:isolate}
+.home-video-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:7px;background:#080808}
+.home-video-tile{position:relative;min-width:0;overflow:hidden;border-radius:13px;background:#111}
+.home-video-tile video{width:100%;height:100%;display:block;object-fit:cover;background:#111}
+.home-video-tile::after{content:"";position:absolute;inset:45% 0 0;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(0,0,0,.86))}
+.home-video-caption{position:absolute;z-index:2;left:13px;right:13px;bottom:13px;color:#fff;font-size:13px;font-weight:900;line-height:1.25;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.home-video-badge{position:absolute;z-index:4;top:16px;left:16px;padding:8px 11px;border-radius:999px;background:rgba(179,0,19,.94);color:#fff;font-size:12px;font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.home-video-dots{position:absolute;z-index:4;top:20px;right:18px;display:flex;gap:6px;align-items:center}
+.home-video-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer}
+.home-video-dot.active{width:22px;border-radius:999px;background:#fff}
+.home-video-controls{position:absolute;z-index:4;right:15px;bottom:15px;display:flex;gap:7px}
+.home-video-control{width:35px;height:35px;border:1px solid rgba(255,255,255,.55);border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.57);color:#fff;cursor:pointer;font-size:18px;font-weight:900;backdrop-filter:blur(5px)}
+.home-video-control:hover,.home-video-control:focus-visible{background:var(--red);outline:none}
+.home-video-fallback{height:100%;min-height:350px;padding:28px;background:#fff;color:#111}
+.home-video-fallback h3{color:var(--red);font-size:24px;margin-bottom:12px}.home-video-fallback ul{padding-left:20px;margin-top:12px}.home-video-fallback li{margin:7px 0;font-weight:700}
+@media(max-width:1000px){.hero-video-card,.home-video-fallback{min-height:430px}}
+@media(max-width:700px){.hero-video-card,.home-video-fallback{min-height:390px}.home-video-grid{grid-template-columns:1fr}.home-video-tile:nth-child(2){display:none}.home-video-caption{font-size:14px}.home-video-badge{top:14px;left:14px}.home-video-dots{top:18px;right:15px}}
+@media(prefers-reduced-motion:reduce){.home-video-control,.home-video-dot{transition:none}}
